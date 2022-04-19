@@ -1,13 +1,17 @@
 //Money.cpp
 
-#include "Money.h"
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "Money.h"
 
 using namespace std;
 
-void Money::SetSum(Account& a, int newam500, int newam200, int newam100, int newam50, int newam20, int newam10, int newam5, int newam2, int newam1, int newam050, int newam025, int newam010, int newam005, int newam002, int newam001) {
+
+bool Money::Init(int newam500, int newam200, int newam100, int newam50, int newam20, int newam10, int newam5, int newam2, int newam1, int newam050, int newam025, int newam010, int newam005, int newam002, int newam001){
+    if (newam500 < 0 || newam200 < 0 || newam100 < 0 || newam50 < 0 || newam20 < 0 || newam10 < 0 || newam5 < 0 || newam2 < 0 || newam1 < 0 || newam050 < 0 || newam025 < 0 || newam010 < 0 || newam005 < 0 || newam002 < 0 || newam001 < 0)
+    return false;
+
     am500 = newam500;
     am200 = newam200;
     am100 = newam100;
@@ -23,56 +27,95 @@ void Money::SetSum(Account& a, int newam500, int newam200, int newam100, int new
     am005 = newam005;
     am002 = newam002;
     am001 = newam001;
-    a.sum = 500 * am500 + 200 * am200 + 100 * am100 + 50 * am50 + 20 * am20 + 10 * am10 + 5 * am5 + 2 * am2 + am1 + 0.5 * am050 + 0.25 * am025 + 0.1 * am010 + 0.05 * am005 + 0.02 * am002 + 0.01* am001;
+    return true;
 }
 
-Account Money::SumSum(Account &a, Account &b) {
-    Account c;
-    c.sum = a.sum + b.sum;
-    return c;
+double Money::Sum() {
+    return 500 * am500 + 200 * am200 + 100 * am100 + 50 * am50 + 20 * am20 + 10 * am10 + 5 * am5 + 2 * am2 + am1 + 0.5 * am050 + 0.25 * am025 + 0.1 * am010 + 0.05 * am005 + 0.02 * am002 + 0.01 * am001;
 }
 
-Account Money::DiffSum(Account& a, Account& b) {
-    Account c;
-    c.sum = a.sum - b.sum;
-    return c;
-}
-
-Account Money::ProdSum(Account& a, Account& b) {
-    Account c;
-    c.sum = a.sum * b.sum;
-    return c;
-}
-
-Account Money::DivSum(Account& a, Account& b) {
-    Account c;
-    c.sum = a.sum / b.sum;
-    return c;
-}
-
-Account Money::MultOnNum(Account &a, long double number) {
-    a.sum *= number;
+Money doubleMoney(double value) {
+    Money a;
+    a.Sum();
     return a;
 }
 
-Account Money::DivOnNum(Account& a, long double number) {
-    a.sum /= number;
-    return a;
+double SumSum(Money a, Money b)
+{
+    return a.Sum() + b.Sum();
 }
 
-void Money::Comp(Account& a, Account& b) {
-    if (a.sum > b.sum)
-        cout << "First sum is bigger" << endl;
-    else if (a.sum < b.sum)
-        cout << "Second sum is bigger" << endl;
-    else
-        cout << "Sums are equal" << endl;
+double DiffSum(Money a, Money b){
+    return a.Sum() + b.Sum();
 }
-/*string Money::toString(Account& a) {
-    string d;
+
+double ProdSum(Money a, Money b)
+{
+    return a.Sum() + b.Sum();
+}
+
+double DivSum(Money a, Money b)
+{
+    return a.Sum() + b.Sum();
+}
+
+Money MultOnNum(Money a, double value) {
+    double mult = a.Sum() * value;
+    Money b = doubleMoney(mult);
+    return b;
+}
+
+Money DivOnNum(Money a, double value) {
+    double mult = a.Sum() / value;
+    Money b = doubleMoney(mult);
+    return b;
+}
+
+bool Less(Money a, Money b) {
+    return a.Sum() < b.Sum();
+}
+
+bool Greater(Money a, Money b) {
+    return a.Sum() > b.Sum();
+}
+
+bool Equal (Money a, Money b) {
+    return a.Sum() == b.Sum();
+}
+
+bool NotEqual(Money a, Money b) {
+    return !(Equal(a, b));
+}
+
+string Money::toString(){
     stringstream sout;
-    sout << a.sum << endl;
-    d = sout.str();
-    d.replace(d.find("."), 1, ",");
-    return d;
-}*/
+    sout << Sum();
+    return sout.str();
+}
+
+void Money::Read() {
+    cout << "500"; cin >> am500;
+    cout << "200"; cin >> am200;
+    cout << "100"; cin >> am100;
+    cout << "50"; cin >> am50;
+    cout << "20"; cin >> am20;
+    cout << "10"; cin >> am10;
+    cout << "5"; cin >> am5;
+    cout << "2"; cin >> am2;
+    cout << "1"; cin >> am1;
+    cout << "0,50"; cin >> am050;
+    cout << "0,25"; cin >> am025;
+    cout << "0,10"; cin >> am010;
+    cout << "0,05"; cin >> am005;
+    cout << "0,02"; cin >> am002;
+    cout << "0,01"; cin >> am001;
+}
+
+void Money::Display(){
+    cout << toString() << endl;
+}
+
+
+
+
+
