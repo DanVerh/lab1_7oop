@@ -44,9 +44,9 @@ public:
 	int GetAm001() const { return am001; };
 
 	friend Money doubleMoney(double value);
-	friend double SumSum(Money a, Money b);
-	friend double DiffSum(Money a, Money b);
-	friend double ProdSum(Money a, Money b);
+	friend Money SumSum(Money a, Money b);
+	friend Money DiffSum(Money a, Money b);
+	//friend double ProdSum(Money a, Money b);
 	friend double DivSum(Money a, Money b);
 	friend Money MultOnNum(Money a, double value);
 	friend Money DivOnNum(Money a, double value);
@@ -61,9 +61,9 @@ public:
 };
 
 Money doubleMoney(double value);
-double SumSum(Money a, Money b);
-double DiffSum(Money a, Money b);
-double ProdSum(Money a, Money b);
+Money SumSum(Money a, Money b);
+Money DiffSum(Money a, Money b);
+//double ProdSum(Money a, Money b);
 double DivSum(Money a, Money b);
 Money MultOnNum(Money a, double value);
 Money DivOnNum(Money a, double value);

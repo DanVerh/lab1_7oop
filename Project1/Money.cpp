@@ -88,23 +88,27 @@ Money doubleMoney(double value)
     return a;
 }
 
-double SumSum(Money a, Money b)
+Money SumSum(Money a, Money b)
 {
-    return a.Sum() + b.Sum();
+    double mult = a.Sum() + b.Sum();
+    Money c = doubleMoney(mult);
+    return c;
 }
 
-double DiffSum(Money a, Money b){
-    return a.Sum() + b.Sum();
-}
-
-double ProdSum(Money a, Money b)
+Money DiffSum(Money a, Money b)
 {
-    return a.Sum() + b.Sum();
+    double mult = a.Sum() - b.Sum();
+    Money c = doubleMoney(mult);
+    return c;
 }
+/*double ProdSum(Money a, Money b)
+{
+    return a.Sum() * b.Sum();
+}*/
 
 double DivSum(Money a, Money b)
 {
-    return a.Sum() + b.Sum();
+    return a.Sum() / b.Sum();
 }
 
 Money MultOnNum(Money a, double value) {

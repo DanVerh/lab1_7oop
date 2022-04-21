@@ -31,11 +31,11 @@ void Account::Display() {
 }
 
 void Account::Withdraw(Money value) {
-    sum = doubleMoney(DiffSum(sum, value));
+    sum = DiffSum(sum, value);
 }
 
 void Account::TopUp(Money value) {
-    sum = doubleMoney(SumSum(sum, value));
+    sum = SumSum(sum, value);
 }
 
 void Account::Interest() {
